@@ -1,0 +1,218 @@
+<?php
+
+session_start();
+error_reporting(0);
+
+$conn = mysqli_connect("localhost","root","","php_ecom");
+
+/*$conn = mysqli_connect("ssql210.infinityfree.com","if0_39156924","ZeX5OUmeMuqMUo","if0_39156924_database_php");*/ 
+
+if(isset($_GET['search'])){
+
+    $search_value = $_GET['my_search'];
+
+    $sql = "SELECT * from products Where concat(title,description) LIKE '%$search_value%' ";
+    $result = mysqli_query($conn,$sql);
+
+}else{
+
+    $sql = "SELECT * from products";
+
+    $result = mysqli_query($conn,$sql);
+}
+
+
+
+
+
+?>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>TCG Store</title>
+</head>
+<body>
+    <nav>
+        <input type="checkbox" id="check">
+
+        <label for="check" class="checkbtn">
+            <i class="fa fa-bars"></i>
+        </label>
+
+        <label class="my_logo">
+            <a href="index.php"><img src="images/op-tcg-slider.png"></a>
+        </label>
+
+        <ul>
+            <li>
+                <a href="index.php">Home </a>
+            </li>
+
+            <li>
+                <a href="product.php">Products</a>
+            </li>
+
+            <li>
+                <a href="#">Contacts</a>
+            </li>
+
+            <li>
+                <a href="sell.php">Sell</a>
+            </li>            
+
+            <?php
+
+                if ($_SESSION['user_email']){
+                    ?>
+
+
+                    <a class="logout_btn" href="user_order.php?email=<?php echo$_SESSION['user_email'] ?>">Orders</a>
+
+                    <a class="logout_btn" href="logout.php">Logout</a>
+
+                    <?php
+                }else{
+                    ?>
+
+                    <li>
+                        <a href="register.php">Register</a>
+                    </li>
+
+                    <li>
+                        <a href="register.php">Login</a>
+                    </li>
+
+                    <?php
+                }
+
+            ?>
+
+            
+        </ul>
+    </nav>
+
+
+    <div class="payment-container">
+        <h2>Payment Details</h2>
+        <form action="payment.php" method="post">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="card">Card Number</label>
+        <input type="text" id="card" name="card" maxlength="16" required>
+
+        <label for="expiry">Expiry Date</label>
+        <input type="text" id="expiry" name="expiry" placeholder="MM/YY" required>
+
+        <label for="cvv">CVV</label>
+        <input type="text" id="cvv" name="cvv" maxlength="4" required>
+
+        <button type="submit">Pay Now</button>
+        </form>
+  </div>
+
+    <!--footer-->
+
+    <div>
+        <div class="footer">
+            
+
+            <div class="footer_title">
+                <h3>My Ecom</h3>
+            </div>
+
+
+            <div class="footer_content">
+
+                <div>
+                    <h4>Services</h4>
+                    <p>
+                        <a href="#">Card Grading</a>
+                    </p>
+
+                    <p>
+                        <a href="#">Events</a>
+                    </p>
+
+                </div>
+
+
+                <div>
+                    <h4>Socail</h4>
+                    <p>
+                        <a href="#">Facebook</a>
+                    </p>
+
+                    <p>
+                        <a href="#">Instagram</a>
+                    </p>
+
+                    <p>
+                        <a href="#">Twitter/ X</a>
+                    </p>
+
+                </div>
+
+
+                <div>
+                    <h4>Quick Links</h4>
+                    <p>
+                        <a href="#">Home</a>
+                    </p>
+
+                    <p>
+                        <a href="#">Products</a>
+                    </p>
+
+                    <p>
+                        <a href="#">Contacts</a>
+                    </p>
+
+                    <p>
+                        <a href="#">Register</a>
+                    </p>
+
+                    <p>
+                        <a href="#">Login</a>
+                    </p>
+
+                </div>
+
+
+                <div>
+                    <h4>Location</h4>
+                    <p>
+                        Address: Bedfordview
+                    </p>
+
+                    <p>
+                        Email: email@gmail.com
+                    </p>
+
+                    <p>
+                        Phone: 123456789
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+</body>
+</html>

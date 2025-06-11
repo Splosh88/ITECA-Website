@@ -1,0 +1,431 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body{
+    font-family: monospace;
+}
+
+nav{
+    background: darkblue;
+    height: 80px;
+}
+
+.my_logo{
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 80px;
+    padding: 0 100px;
+}
+
+nav ul{
+    float: right;
+    margin-right: 60px;
+}
+
+nav ul li{
+    display: inline-block;
+    line-height: 80px;
+    margin: 0 5px;
+}
+
+nav ul li a{
+    color: white;
+    font-size: 17px;
+    text-transform: uppercase;
+}
+
+nav ul li a:hover{
+    color: yellow;
+}
+
+.checkbtn{
+    float: right;
+    color: white;
+    line-height: 80px;
+    font-size: 30px;
+    margin-right: 40px;
+    display: none;
+}
+
+#check{
+    display: none;
+}
+
+@media(max-width:750px){
+    .checkbtn{
+        display: block;
+    }
+    ul{
+        position: fixed;
+        background: darkblue;
+        width: 100%;
+        height: 100vh;
+        top:60px;
+        text-align: center;
+        left: -100%;
+        transition: all 0.5s;
+        z-index: 1000;
+    }
+    nav ul li{
+        display: block;
+    }
+    #check:checked~ul{
+        left: 0px;
+    }
+}
+
+
+/*spinning carasol*/
+.banner{
+    width: 100%;
+    height: 90vh;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    background-color: #d4d6db;
+}
+
+.banner .slider{
+    position: absolute;
+    width: 200px;
+    height: 280px;
+    top: 90px;
+    left: calc(50% - 100px);
+    transform-style: preserve-3d;
+    transform: perspective(1000px) rotateX(-16deg);
+    animation: autoRun 60s linear infinite;
+}
+
+@keyframes autoRun{
+    from{
+        transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+    }
+    to{
+        transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+    }
+}
+
+.banner .slider .item{
+    position: absolute;
+    inset: 0;
+    transform: 
+        rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+        translateZ(550px);
+}
+
+.banner .slider .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.simple-slider {
+    text-align: center;
+    margin: 100px auto 40px;
+    max-width: 600px;
+}
+
+.simple-slider img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.slider-buttons {
+    margin-top: 10px;
+}
+
+.slider-buttons button {
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.slider-buttons button:hover {
+    background-color: #3c98ff;
+}
+
+.p_title{
+    text-align: center;
+    font-size: 25px;
+    padding: 20px;
+}
+
+/*Products*/
+.card{
+    max-width: 330px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+    margin: 25px;
+    padding: 25px;
+}
+
+.card:hover{
+    box-shadow: 0 14px 18px 0 skyblue;
+}
+
+.p_image{
+    width: 100%;
+    height: 350px;
+}
+
+.my_card{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.card h4{
+    padding: 10px;
+}
+
+.card p{
+    padding: 10px;
+    margin: 10px;
+}
+
+.card a{
+    padding: 10px;
+    background: gray;
+    border-radius: 10%;
+    margin: 10px;
+}
+
+.card a:hover{
+    background: black;
+    color: white;
+}
+
+.footer{
+    background: black;
+    width: 100%;
+}
+
+.footer_title h3{
+    color: white;
+    font-size: 32px;
+    padding: 10px;
+    margin: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.footer_content h4{
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    margin: 10px;
+    font-weight: bold;
+}
+
+.footer_content p{
+    color: white;
+    padding: 10px;
+}
+
+.footer_content a{
+    color: white;
+}
+
+.footer_content a:hover{
+    color: black;
+    background: white;
+}
+
+.footer .footer_content{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+@media(max-width: 650px){
+    .footer .footer_content{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+}
+
+.logout_btn{
+    background: skyblue;
+    color: white;
+    padding: 10px;
+    border-radius: 14px;
+}
+
+table{
+    margin-top: 50px;
+    margin-left: 10%;
+    width: 60%;
+}
+
+th{
+    background: black;
+    color: white;
+    font-size: 25px;
+    text-align: center;
+}
+
+td{
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+}
+
+table, th, td{
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+
+input[type='submit']{
+    background: gray;
+    color: white;
+    padding: 10px;
+    border-radius: 10%;
+}
+
+.search-input {
+    width: 300px;
+    height: 40px;
+    font-size: 16px;
+    padding: 5px 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+.my_logo img {
+    height: 75px;
+    width: auto;
+    vertical-align: middle;
+    padding: 0;
+}
+
+.info_sell {
+    max-width: 600px;
+    margin: 40px auto;
+    background: white;
+    padding: 25px 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.info_sell h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.my_form_sell .sell_deg {
+    margin-bottom: 15px;
+}
+
+.my_form_sell label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #555;
+}
+
+.my_form_sell input[type="text"],
+.my_form_sell input[type="number"],
+.my_form_sell input[type="file"],
+.my_form_sell textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.my_form_sell textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+.my_form_sell input[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+}
+
+.my_form_sell input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+.add_order {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.add_order input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add_order input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.payment-container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+.payment-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.payment-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.payment-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.payment-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.payment-container button:hover {
+    background-color: #218838;
+}
